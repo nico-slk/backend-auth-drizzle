@@ -49,8 +49,6 @@ export class AuthService {
       throw new ConflictError("INVALID_CREDENTIALS");
     }
 
-    console.log("JWT_SECRET:", process.env.JWT_SECRET);
-
     const token = jwt.sign(
       {
         id: user[0]!.id,
