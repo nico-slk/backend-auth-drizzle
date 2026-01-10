@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "types": ["node"],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+
+    "moduleResolution": "NodeNext",
+    "rootDir": "src",
+    "outDir": "dist/",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "target": "es2016",
+    "module": "NodeNext"
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["src"]
+}
