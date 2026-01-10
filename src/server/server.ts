@@ -1,13 +1,13 @@
 import cors from "cors";
 import "dotenv/config";
 import express, { Application } from "express";
-
-// Importa tus rutas (asumiendo que crearás este archivo luego)
-// import userRoutes from './routes/user.routes';
+import { createServer, Server as ServerNode } from "http";
+import { ApiPaths } from "../routes";
 
 export class Server {
   private app: Application;
   private port: string;
+  ServerNode: ServerNode;
 
   constructor() {
     this.app = express();
@@ -16,26 +16,29 @@ export class Server {
     // Métodos iniciales
     this.middlewares();
     this.routes();
+    this.ServerNode = createServer(this.app);
   }
 
   middlewares() {
-    // CORS: Permite que otros dominios se conecten a tu API
-    this.app.use(cors());
-
-    // Lectura y parseo del body (JSON)
+    this.app.use(
+      cors({
+        origin: "*",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true,
+      })
+    );
     this.app.use(express.json());
-
-    // Carpeta pública (opcional)
-    this.app.use(express.static("public"));
   }
 
   routes() {
-    // Aquí definirás tus endpoints
-    // this.app.use('/api/users', userRoutes);
-
-    // Ruta de prueba
-    this.app.get("/ping", (_req, res) => {
-      res.json({ msg: "API de Autenticación funcionando" });
+    ApiPaths.forEach(({ url, router }) => {
+      try {
+        this.app.use(url, router);
+        console.log(`✅ Ruta cargada: /api${url}`);
+      } catch (error) {
+        console.error(`❌ Error al cargar la ruta ${url}:`, error);
+      }
     });
   }
 

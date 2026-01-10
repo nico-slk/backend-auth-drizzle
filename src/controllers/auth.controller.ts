@@ -25,4 +25,21 @@ export class AuthController {
       });
     }
   }
+
+  async login(req: Request, res: Response) {
+    const { email, password } = req.body;
+    try {
+      const user = await this.authService.login(email, password);
+
+      return res.status(200).json({
+        success: true,
+        data: user,
+      });
+    } catch (error: any) {
+      return res.status(error.statusCode || 500).json({
+        success: false,
+        message: error.message || "Error interno del servidor",
+      });
+    }
+  }
 }

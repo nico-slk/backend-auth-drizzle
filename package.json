@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && node dist/index.js",
-    "dev": "nodemon -e ts --exec \"npm start\"",
+    "dev": "nodemon --exec tsx src/index.ts",
+    "start": "node dist/index.js",
     "build": "tsc",
-    "generate:migration": "drizzle-kit generate --config ./drizzle.config.ts",
-    "apply:migration": "drizzle-kit migrate --config ./drizzle.config.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "repository": {
     "type": "git",
@@ -24,19 +24,24 @@
   },
   "homepage": "https://github.com/nico-slk/backend-auth-drizzle#readme",
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.16.3",
     "postgres": "^3.4.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.5",
     "@types/pg": "^8.16.0",
     "drizzle-kit": "^0.31.8",
+    "nodemon": "^3.1.11",
     "tsx": "^4.21.0"
   }
 }
