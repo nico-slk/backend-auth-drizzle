@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { User } from "../interfaces/auth.interface";
 import { AuthService } from "../services";
 
-export class AuthController {
+export default class AuthController {
   private authService: AuthService;
 
   constructor() {

@@ -35,7 +35,7 @@ export class Server {
     ApiPaths.forEach(({ url, router }) => {
       try {
         this.app.use(url, router);
-        console.log(`✅ Ruta cargada: /api${url}`);
+        console.log(`✅ Ruta cargada: ${url}`);
       } catch (error) {
         console.error(`❌ Error al cargar la ruta ${url}:`, error);
       }
